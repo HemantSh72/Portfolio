@@ -5,24 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hemant Sharma | Full Stack Developer</title>
 
-    <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Boxicons (for icons) -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <style>
         /*=============== CSS VARIABLES ===============*/
         :root {
-            /* New Color Palette: Green & Charcoal */
-            --first-color: #57b85d; /* Vibrant Green Accent */
+            /* Dark Theme (Default) */
+            --first-color: #57b85d;
             --first-color-alt: #6cce71;
-            --title-color: #e0e0e0; /* Off-white Text */
+            --title-color: #e0e0e0;
             --text-color: rgba(224, 224, 224, 0.75);
-            --body-color: #0c1414; /* Very Dark Charcoal/Teal background */
-            --container-color: #121c1c; /* Slightly Lighter Charcoal for containers */
+            --body-color: #0c1414;
+            --container-color: #121c1c;
             --border-color: rgba(224, 224, 224, 0.1);
             --gradient-color: linear-gradient(90deg, #57b85d, #6cce71);
 
@@ -33,8 +31,6 @@
             --h3-font-size: 1.25rem;
             --normal-font-size: 1rem;
             --small-font-size: .875rem;
-
-            /* Font weight */
             --font-medium: 500;
             --font-semi-bold: 600;
             --font-bold: 700;
@@ -43,112 +39,78 @@
             --transition: cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
         }
 
-        /* Light Theme (For future use or if toggled) */
+        /*=============== LIGHT THEME OPTIMIZED ===============*/
         body.light-theme {
-            --first-color: #4a9d50;
-            --first-color-alt: #57b85d;
-            --title-color: #0c1414;
-            --text-color: #121c1c;
-            --body-color: #f0f5f5;
-            --container-color: #fff;
-            --border-color: #d1dbdb;
+            /* SeaGreen: Stronger contrast against white than neon green */
+            --first-color: #2e8b57;       
+            --first-color-alt: #3cb371;   
+
+            /* Dark Jungle Green for text - matches Dark Mode BG for brand consistency */
+            --title-color: #1a2e29;       
+            --text-color: #404b48;        
+
+            /* Clean, modern off-white background */
+            --body-color: #f0f4f3;        
+            
+            /* Pure white containers for depth */
+            --container-color: #ffffff;   
+            --border-color: rgba(26, 46, 41, 0.1); 
         }
 
         /*=============== BASE STYLES ===============*/
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: var(--body-font);
             font-size: var(--normal-font-size);
             background-color: var(--body-color);
             color: var(--text-color);
             transition: background-color 0.4s;
+            overflow-x: hidden;
         }
+        h1, h2, h3 { color: var(--title-color); font-weight: var(--font-bold); }
+        ul { list-style: none; }
+        a { text-decoration: none; color: var(--text-color); }
+        img { max-width: 100%; height: auto; }
 
-        h1, h2, h3 {
-            color: var(--title-color);
-            font-weight: var(--font-bold);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--text-color);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Custom Cursor */
+        /*=============== OPTIMIZED CUSTOM CURSOR ===============*/
         .cursor-dot, .cursor-outline {
             pointer-events: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+            opacity: 0; 
         }
-
         .cursor-dot {
             width: 8px;
             height: 8px;
             background-color: var(--first-color);
+            will-change: transform; 
         }
-
         .cursor-outline {
             width: 40px;
             height: 40px;
             border: 2px solid var(--first-color);
             opacity: 0.5;
-            transition-property: transform, background-color;
-            transition-duration: 0.2s;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            will-change: transform;
         }
-
-        body:hover .cursor-dot,
-        body:hover .cursor-outline {
-            opacity: 1;
-        }
+        body:hover .cursor-dot { opacity: 1; }
+        body:hover .cursor-outline { opacity: 0.5; }
 
         .cursor-outline.hovered {
-            transform: translate(-50%, -50%) scale(1.5);
+            width: 60px;
+            height: 60px;
             background-color: hsla(123, 44%, 53%, 0.1);
         }
 
-
         /*=============== REUSABLE CSS CLASSES ===============*/
-        .container {
-            max-width: 1024px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 1.5rem;
-        }
-
-        .grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .section {
-            padding: 6rem 0 2rem;
-            position: relative;
-        }
-
+        .container { max-width: 1024px; margin: 0 auto; padding: 0 1.5rem; }
+        .grid { display: grid; gap: 1.5rem; }
+        .section { padding: 6rem 0 2rem; position: relative; }
         .section__title {
             font-size: var(--h1-font-size);
             text-align: center;
@@ -168,23 +130,20 @@
             z-index: 100;
             transition: var(--transition);
         }
-
         .nav {
             height: 4.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .header-scrolled {
-            background: rgba(12, 20, 20, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(12, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
-        body.light-theme .header-scrolled {
-            background: hsla(180, 14%, 96%, 0.7);
+        body.light-theme .header-scrolled { 
+            background: rgba(255, 255, 255, 0.85); 
         }
-
         .nav__logo {
             font-size: 1.5rem;
             font-weight: var(--font-bold);
@@ -192,29 +151,15 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
-        .nav__logo:hover {
-            color: var(--first-color);
-        }
-
-        .nav__menu {
-            display: flex;
-        }
-
-        .nav__list {
-            display: flex;
-            column-gap: 2rem;
-        }
-
+        .nav__logo:hover { color: var(--first-color); }
+        .nav__menu { display: flex; }
+        .nav__list { display: flex; column-gap: 2rem; }
         .nav__link {
             font-weight: var(--font-medium);
             transition: var(--transition);
             position: relative;
         }
-
-        .nav__link:hover {
-            color: var(--first-color);
-        }
-
+        .nav__link:hover, .nav__link.active-link { color: var(--first-color); }
         .nav__link::after {
             content: '';
             position: absolute;
@@ -225,27 +170,11 @@
             bottom: -0.5rem;
             transition: var(--transition);
         }
+        .nav__link:hover::after, .nav__link.active-link::after { width: 100%; }
+        .theme-toggle { font-size: 1.25rem; cursor: pointer; transition: var(--transition); }
+        .theme-toggle:hover { color: var(--first-color); }
 
-        .nav__link:hover::after,
-        .nav__link.active-link::after {
-            width: 100%;
-        }
-
-        .nav__link.active-link {
-            color: var(--first-color);
-        }
-
-        .theme-toggle {
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            color: var(--first-color);
-        }
-
-        /*=============== HOME / HERO ===============*/
+        /*=============== HOME / HERO (Optimized Gradient) ===============*/
         .home {
             min-height: 100vh;
             display: flex;
@@ -253,41 +182,75 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            /* CSS Animation instead of JS Library */
+            background: radial-gradient(circle at 50% 50%, #1a2e29 0%, #0c1414 70%);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+        }
+        
+        body.light-theme .home {
+            background: radial-gradient(circle at 50% 50%, #e0f2e9 0%, #f0f4f3 70%);
         }
 
-        .home__container {
-            text-align: center;
-            z-index: 2;
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
+        /* Decorative blobs */
+        .home::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--first-color);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 10s infinite alternate;
+        }
+        .home::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--first-color-alt);
+            filter: blur(150px);
+            opacity: 0.1;
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float 8s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
+
+        .home__container { text-align: center; z-index: 2; }
         .home__content h1 {
             font-size: 4.5rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
-            /* REMOVED GRADIENT FOR SOLID COLOR */
-            background: none;
-            -webkit-background-clip: initial;
-            background-clip: initial;
             color: var(--title-color);
         }
-
         .home__content h3 {
             font-size: var(--h2-font-size);
             margin-bottom: 1rem;
             color: var(--title-color);
         }
+        .home__content p { margin-bottom: 2rem; font-size: var(--h3-font-size); }
 
-        .home__content p {
-            margin-bottom: 2rem;
-            font-size: var(--h3-font-size);
-        }
-
-        /* NEW CSS-ONLY TYPING ANIMATION */
+        /* CSS Typing Animation */
         .dynamic-text-wrapper {
             display: inline-block;
             position: relative;
             vertical-align: top;
-            height: 1.2em; /* Match line-height of p tag */
+            height: 1.2em;
         }
         .dynamic-text-wrapper::after {
             content: '';
@@ -298,37 +261,24 @@
             right: -8px;
             animation: blink 0.7s infinite;
         }
-
         .dynamic-text {
             display: inline-block;
             overflow: hidden;
-            height: 1.2em; /* Should match parent height */
+            height: 1.2em;
             color: var(--first-color);
             font-weight: var(--font-bold);
         }
-        
         .dynamic-text span {
             display: block;
             height: 100%;
             animation: spin-text 9s infinite;
         }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes spin-text {
             10%, 25% { transform: translateY(0%); }
             35%, 60% { transform: translateY(-100%); }
             70%, 95% { transform: translateY(-200%); }
             100% { transform: translateY(0%); }
-        }
-
-
-        .typed-cursor {
-            color: var(--first-color);
-            font-size: var(--h3-font-size);
         }
 
         /*=============== BUTTONS ===============*/
@@ -346,17 +296,11 @@
             border: none;
             cursor: pointer;
         }
-
-        .btn i {
-            margin-left: .5rem;
-            vertical-align: middle;
-        }
-
+        .btn i { margin-left: .5rem; vertical-align: middle; }
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px hsla(123, 44%, 53%, 0.4);
         }
-
 
         /*=============== ABOUT ===============*/
         .about__container {
@@ -364,19 +308,13 @@
             align-items: center;
             gap: 3rem;
         }
-
-        .about__image {
-            justify-self: center;
-            position: relative;
-        }
-
+        .about__image { justify-self: center; position: relative; }
         .about__img {
             width: 350px;
             border-radius: 1.5rem;
             position: relative;
             z-index: 2;
         }
-        
         .about__image::before {
             content: '';
             position: absolute;
@@ -386,19 +324,11 @@
             left: 1rem;
             border-radius: 1.5rem;
             background: rgba(18, 28, 28, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             z-index: 1;
         }
-        body.light-theme .about__image::before {
-            background: hsla(0, 0%, 100%, 0.5);
-        }
-
-        .about__description {
-            line-height: 1.7;
-        }
-
+        body.light-theme .about__image::before { background: hsla(0, 0%, 100%, 0.5); }
+        .about__description { line-height: 1.7; }
         .about__description b {
             background: var(--gradient-color);
             -webkit-background-clip: text;
@@ -413,18 +343,16 @@
             justify-content: center;
             gap: 1rem;
         }
-
         .skill__item {
             background-color: var(--container-color);
             color: var(--title-color);
             padding: 0.75rem 1.5rem;
             border: 1px solid var(--border-color);
-            border-radius: 2rem; /* oval shape */
+            border-radius: 2rem;
             font-weight: var(--font-medium);
             transition: var(--transition);
             cursor: default;
         }
-
         .skill__item:hover {
             background: var(--gradient-color);
             color: #fff;
@@ -432,14 +360,12 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 16px hsla(123, 44%, 53%, 0.2);
         }
-        
 
         /*=============== PROJECTS ===============*/
         .projects__container {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-
         .project__card {
             background-color: var(--container-color);
             border: 1px solid var(--border-color);
@@ -447,37 +373,26 @@
             overflow: hidden;
             transition: var(--transition);
             box-shadow: 0 4px 12px hsla(180, 29%, 4%, 0.2);
+            /* Important for performance with VanillaTilt */
+            transform-style: preserve-3d;
         }
-
+        body.light-theme .project__card {
+             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
         .project__img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             transition: var(--transition);
         }
-        
-        .project__card:hover .project__img {
-            transform: scale(1.05);
-        }
-
-        .project__data {
-            padding: 1.5rem;
-        }
-
+        .project__card:hover .project__img { transform: scale(1.05); }
+        .project__data { padding: 1.5rem; }
         .project__title {
             font-size: var(--h3-font-size);
             margin-bottom: 0.5rem;
         }
-
-        .project__description {
-            margin-bottom: 1.5rem;
-        }
-
-        .project__buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
+        .project__description { margin-bottom: 1.5rem; }
+        .project__buttons { display: flex; gap: 1rem; }
         .project__button {
             font-size: var(--small-font-size);
             font-weight: var(--font-medium);
@@ -487,23 +402,14 @@
             color: var(--first-color);
             transition: var(--transition);
         }
-
         .project__button:hover {
             text-decoration: underline;
             transform: translateX(3px);
         }
-        .project__button i {
-             font-size: 1.2rem;
-        }
 
         /*=============== CONTACT ===============*/
-        .contact__container {
-            justify-items: center;
-        }
-        .contact__header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
+        .contact__container { justify-items: center; }
+        .contact__header { text-align: center; margin-bottom: 2.5rem; }
         .contact__title {
             display: flex;
             justify-content: center;
@@ -528,10 +434,8 @@
             font-size: var(--normal-font-size);
             color: var(--text-color);
         }
-
-
         .contact__box {
-            background-color: rgba(18, 28, 28, 0.5); /* Semi-transparent background */
+            background-color: rgba(18, 28, 28, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 2.5rem;
@@ -542,6 +446,10 @@
             max-width: 700px;
             margin: 0 auto;
         }
+        body.light-theme .contact__box {
+            background-color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
 
         .contact__form {
             width: 100%;
@@ -550,41 +458,30 @@
             gap: 1.5rem;
             align-items: center;
         }
-
         .contact__group {
             width: 100%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
-
         .contact__input {
             width: 100%;
             padding: 1rem;
             border-radius: 0.5rem;
             border: 1px solid var(--border-color);
-            background-color: rgba(12, 20, 20, 0.5); /* Input background */
+            background-color: rgba(12, 20, 20, 0.5);
             color: var(--title-color);
             font-family: var(--body-font);
             font-size: var(--normal-font-size);
             transition: var(--transition);
         }
-
-        .contact__input::placeholder {
-            color: var(--text-color);
+        body.light-theme .contact__input {
+            background-color: #f8f9fa;
         }
-
-        .contact__input:focus {
-            outline: none;
-            border-color: var(--first-color);
-        }
-
-        textarea.contact__input {
-            resize: vertical;
-            min-height: 150px;
-        }
-        
-        .recaptcha-placeholder {
+        .contact__input::placeholder { color: var(--text-color); }
+        .contact__input:focus { outline: none; border-color: var(--first-color); }
+        textarea.contact__input { resize: vertical; min-height: 150px; }
+        /* .recaptcha-placeholder {
             background-color: rgba(12, 20, 20, 0.5);
             border: 1px solid var(--border-color);
             border-radius: .5rem;
@@ -593,92 +490,54 @@
             max-width: 300px;
             color: var(--text-color);
             text-align: center;
-        }
-
+        } */
 
         /*=============== FOOTER ===============*/
         .footer {
             margin-top: 4rem;
             background: rgba(12, 20, 20, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border-top: 1px solid var(--border-color);
         }
-
-        body.light-theme .footer {
-            background: hsla(180, 14%, 96%, 0.7);
-        }
-
+        body.light-theme .footer { background: rgba(255, 255, 255, 0.7); }
         .footer__container {
             padding: 2rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .footer__copy {
-            font-size: var(--small-font-size);
-        }
-
-        .footer__links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .footer__social {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .footer__link:hover,
-        .footer__social-link:hover {
-            color: var(--first-color);
-        }
+        .footer__copy { font-size: var(--small-font-size); }
+        .footer__links, .footer__social { display: flex; gap: 1.5rem; }
+        .footer__link:hover, .footer__social-link:hover { color: var(--first-color); }
 
         /*=============== SCROLLBAR ===============*/
-        ::-webkit-scrollbar {
-            width: 0.6rem;
-            background-color: #0c1414;
-            border-radius: 0.5rem;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--container-color);
-            border-radius: 0.5rem;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--first-color);
-        }
+        ::-webkit-scrollbar { width: 0.6rem; background-color: #0c1414; border-radius: 0.5rem; }
+        ::-webkit-scrollbar-thumb { background: var(--container-color); border-radius: 0.5rem; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--first-color); }
 
         /*=============== MEDIA QUERIES ===============*/
         @media screen and (max-width: 992px) {
-            .container {
-                padding: 0 1.5rem;
-            }
+            .container { padding: 0 1.5rem; }
         }
-
         @media screen and (max-width: 768px) {
             .nav__menu {
                 position: fixed;
                 bottom: 2rem;
                 left: 50%;
                 transform: translateX(-50%);
-                background-color: rgba(18, 28, 28, 0.6);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
+                background-color: rgba(18, 28, 28, 0.8);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
                 padding: 0.8rem 1.5rem;
                 border-radius: 5rem;
                 border: 1px solid var(--border-color);
                 z-index: 100;
             }
-            body.light-theme .nav__menu {
-                background: hsla(0, 0%, 100%, 0.8);
+            body.light-theme .nav__menu { 
+                background-color: rgba(255, 255, 255, 0.9);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             }
-            
             .home__content h1 { font-size: 2.8rem; }
-            .home__content h3 { font-size: var(--h3-font-size); }
-            .home__content p { font-size: var(--normal-font-size); }
-            .typed-cursor { font-size: var(--normal-font-size); }
-            
             .section { padding: 4rem 0 1rem; }
             .about__container { grid-template-columns: 1fr; gap: 2rem; }
             .about__image { justify-self: center; }
@@ -686,37 +545,26 @@
             .about__data { text-align: center; }
             .contact__group { grid-template-columns: 1fr; }
             .contact__box { padding: 1.5rem; }
-            .contact__title {font-size: var(--h2-font-size);}
+            .contact__title { font-size: var(--h2-font-size); }
         }
-
         @media screen and (max-width: 576px) {
-            .footer__container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .nav__list {
-                column-gap: 1.5rem;
-            }
+            .footer__container { flex-direction: column; gap: 1.5rem; }
+            .nav__list { column-gap: 1.5rem; }
         }
-
         @media screen and (max-width: 350px) {
             .nav__menu { padding: 0.8rem; }
             .nav__list { column-gap: 1rem; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Header / Navigation Bar -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="#home" class="nav__logo">HEMANT SHARMA</a>
-
             <div class="nav__menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
@@ -726,13 +574,11 @@
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
             </div>
-
             <i class='bx bx-moon theme-toggle' id="theme-toggle"></i>
         </nav>
     </header>
 
     <main class="main">
-        <!-- Home / Hero Section -->
         <section class="home" id="home">
             <div class="home__container container">
                 <div class="home__content">
@@ -752,13 +598,10 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section class="about section" id="about">
             <div class="about__container container grid">
                 <div class="about__image">
-                    <!-- Replace with your image URL -->
-                    <img src="https://placehold.co/400x400/0c1414/e0e0e0?text=HS" alt="Hemant Sharma Profile Picture" class="about__img">
-                </div>
+                    <img src="assets/your-photo.jpeg" alt="Hemant Sharma Profile Picture" class="about__img">                </div>
                 <div class="about__data">
                     <h2 class="section__title">About Me</h2>
                     <p class="about__description">
@@ -770,7 +613,6 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
         <section class="skills section" id="skills">
             <h2 class="section__title">My Technical Skills</h2>
             <div class="skills__container container">
@@ -790,50 +632,52 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section class="projects section" id="projects">
             <h2 class="section__title">My Projects</h2>
             <div class="projects__container container grid">
-                <!-- Project 1 -->
+                
                 <div class="project__card" data-tilt>
-                    <img src="https://placehold.co/400x250/121c1c/e0e0e0?text=Project+One" alt="Project Thumbnail" class="project__img">
+                    <img src="./assets/ecommerce.png" alt="E-Commerce Platform" class="project__img">
                     <div class="project__data">
                         <h3 class="project__title">E-Commerce Platform</h3>
-                        <p class="project__description">A full-stack MERN e-commerce site with product listings, cart, user authentication, and payment gateway integration.</p>
+                        <p class="project__description">End-to-end MERN e-commerce system handling products, users, carts, and payments.
+                            Designed RESTful APIs with secure auth and transaction-safe checkout flow.</p>
                         <div class="project__buttons">
                             <a href="#" target="_blank" class="project__button">View Code <i class='bx bxl-github'></i></a>
                             <a href="#" target="_blank" class="project__button">Live Demo <i class='bx bx-link-external'></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
+
                 <div class="project__card" data-tilt>
-                    <img src="https://placehold.co/400x250/121c1c/e0e0e0?text=Project+Two" alt="Project Thumbnail" class="project__img">
+                    <img src="./assets/chat-app.png" alt="Real-Time Chat App" class="project__img">
                     <div class="project__data">
-                        <h3 class="project__title">Real-Time Chat App</h3>
-                        <p class="project__description">A real-time messaging application built with Node.js, Express, and Socket.IO for instant communication.</p>
+                        <h3 class="project__title">Lost No More</h3>
+                        <p class="project__description">Real-world lost & found system enabling users to post and match lost items within a community.
+                            Designed efficient backend workflows with validation and concurrency-safe APIs.</p>
                         <div class="project__buttons">
                             <a href="#" target="_blank" class="project__button">View Code <i class='bx bxl-github'></i></a>
                             <a href="#" target="_blank" class="project__button">Live Demo <i class='bx bx-link-external'></i></a>
                         </div>
                     </div>
                 </div>
-                <!-- Project 3 -->
+
                 <div class="project__card" data-tilt>
-                    <img src="https://placehold.co/400x250/121c1c/e0e0e0?text=Project+Three" alt="Project Thumbnail" class="project__img">
+                    <img src="./assets/task-api.png" alt="Task Management API" class="project__img">
                     <div class="project__data">
-                        <h3 class="project__title">Task Management API</h3>
-                        <p class="project__description">A robust RESTful API for a task manager with CRUD operations, user authentication, and data validation.</p>
+                        <h3 class="project__title">Intelli-Resume</h3>
+                        <p class="project__description">Backend-driven system for resume–JD matching using AI-assisted skill extraction and relevance scoring.
+                            Built scalable REST APIs with JWT authentication and cloud-based resume uploads.</p>
                         <div class="project__buttons">
                             <a href="#" target="_blank" class="project__button">View Code <i class='bx bxl-github'></i></a>
                             <a href="#" target="_blank" class="project__button">Live Demo <i class='bx bx-link-external'></i></a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="contact section" id="contact">
             <div class="contact__container container">
                 <div class="contact__header">
@@ -843,7 +687,6 @@
                     </h2>
                     <p class="contact__subtitle">Have a project in mind or just want to say hello? Feel free to reach out.</p>
                 </div>
-
                 <div class="contact__box">
                     <form action="" class="contact__form">
                         <div class="contact__group">
@@ -852,7 +695,7 @@
                         </div>
                         <input type="text" name="subject" placeholder="Subject" required class="contact__input">
                         <textarea name="message" placeholder="Your Message" required class="contact__input"></textarea>
-                        <div class="recaptcha-placeholder">I'm not a robot (placeholder)</div>
+                        <!-- <div class="recaptcha-placeholder">I'm not a robot (placeholder)</div> -->
                         <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
@@ -860,7 +703,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer__container container">
             <div class="footer__social">
@@ -876,35 +718,12 @@
         </div>
     </footer>
 
-
-    <!-- External JS Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.waves.min.js"></script>
-    <!-- REMOVED Typed.js SCRIPT -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <script type="text/javascript" src="https://unpkg.com/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
-    <!-- Add EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
     <script>
-        /*=============== VANTA.JS WAVES ANIMATION ===============*/
-        VANTA.WAVES({
-            el: "#home",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x15332c, /* UPDATED dark teal color */
-            shininess: 15.00, /* REDUCED shininess */
-            waveHeight: 10.00, /* REDUCED wave height */
-            waveSpeed: 0.50,
-            zoom: 0.75
-        });
-
-        /*=============== THEME TOGGLE (DARK/LIGHT) ===============*/
+        /*=============== THEME TOGGLE ===============*/
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const moonIcon = 'bx-moon';
@@ -916,10 +735,8 @@
             themeToggle.classList.toggle(moonIcon, theme !== 'light');
             localStorage.setItem('selected-theme', theme);
         };
-
         const currentTheme = localStorage.getItem('selected-theme') || 'dark';
         setTheme(currentTheme);
-
         themeToggle.addEventListener('click', () => {
             const newTheme = body.classList.contains('light-theme') ? 'dark' : 'light';
             setTheme(newTheme);
@@ -930,10 +747,8 @@
         window.addEventListener('scroll', () => {
             header.classList.toggle('header-scrolled', window.scrollY > 50);
         });
-
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav__link');
-
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -944,96 +759,76 @@
                 }
             });
         }, { rootMargin: '-50% 0px -50% 0px' });
+        sections.forEach(section => sectionObserver.observe(section));
 
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        /*=============== TYPED.JS (DYNAMIC TYPING ANIMATION) ===============*/
-        // REMOVED Typed.js INITIALIZATION
-
-        /*=============== SCROLLREVEAL (SECTION FADE-IN ANIMATION) ===============*/
-        const sr = ScrollReveal({
-            origin: 'top',
-            distance: '60px',
-            duration: 1200, // Faster animation
-            delay: 100, // Quicker start
-        });
-
+        /*=============== SCROLLREVEAL ===============*/
+        const sr = ScrollReveal({ origin: 'top', distance: '60px', duration: 1000, delay: 50 });
         sr.reveal(`.home__content, .section__title`);
         sr.reveal(`.about__image, .contact__header`, { origin: 'left' });
         sr.reveal(`.about__data, .contact__box`, { origin: 'right' });
-        sr.reveal(`.skill__item, .project__card`, { interval: 100 });
+        sr.reveal(`.skill__item, .project__card`, { interval: 50 });
         
-        /*=============== VANILLA-TILT.JS (3D PROJECT TILT) ===============*/
-        VanillaTilt.init(document.querySelectorAll(".project__card"), {
-            max: 20,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.2
-        });
+        /*=============== VANILLA-TILT.JS ===============*/
+        if(window.innerWidth > 768) {
+            VanillaTilt.init(document.querySelectorAll(".project__card"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.1
+            });
+        }
 
-        /*=============== CUSTOM CURSOR ===============*/
+        /*=============== OPTIMIZED CUSTOM CURSOR ===============*/
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorOutline = document.querySelector(".cursor-outline");
         const hoverables = document.querySelectorAll('a, button, .theme-toggle, .project__card, .skill__item');
+        
+        let mouseX = 0, mouseY = 0;
+        let outlineX = 0, outlineY = 0;
 
         window.addEventListener("mousemove", (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         });
+
+        function animateCursor() {
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
 
         hoverables.forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
             el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
         });
 
-        /*=============== CONTACT FORM FUNCTIONALITY ===============*/
-/*=============== CONTACT FORM FUNCTIONALITY ===============*/
-(function() {
-  // Initialize EmailJS with your Public Key
-  emailjs.init({
-    publicKey: "jBM1ZtoreCCVk5uMh", // Replace with the Public Key from your EmailJS account
-  });
-})();
+        /*=============== CONTACT FORM ===============*/
+        (function() {
+          emailjs.init({ publicKey: "jBM1ZtoreCCVk5uMh" });
+        })();
 
-const contactForm = document.querySelector('.contact__form');
-const submitButton = contactForm.querySelector('button[type="submit"]');
+        const contactForm = document.querySelector('.contact__form');
+        const submitButton = contactForm.querySelector('button[type="submit"]');
 
-contactForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const submitButtonOriginalText = submitButton.textContent;
-  submitButton.textContent = 'Sending...';
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const submitButtonOriginalText = submitButton.textContent;
+          submitButton.textContent = 'Sending...';
 
-  // These IDs from the previous steps
-  const serviceID = 'service_ziabsku'; // Replace with the Service ID from EmailJS
-  const templateID = 'template_xmgz6xp'; // Replace with the Template ID from EmailJS
-
-  emailjs.sendForm(serviceID, templateID, this)
-      .then(() => {
-          submitButton.textContent = 'Message Sent!';
-          alert('Thank you for your message!');
-          contactForm.reset();
-          setTimeout(() => {
-              submitButton.textContent = submitButtonOriginalText;
-          }, 5000);
-      }, (err) => {
-          submitButton.textContent = 'Send Message';
-          alert(JSON.stringify(err));
-      });
-});
-
+          emailjs.sendForm('service_ziabsku', 'template_xmgz6xp', this)
+              .then(() => {
+                  submitButton.textContent = 'Message Sent!';
+                  alert('Thank you for your message!');
+                  contactForm.reset();
+                  setTimeout(() => { submitButton.textContent = submitButtonOriginalText; }, 5000);
+              }, (err) => {
+                  submitButton.textContent = 'Send Message';
+                  alert(JSON.stringify(err));
+              });
+        });
     </script>
 </body>
 </html>
-
-
-
